@@ -14,13 +14,12 @@ class AuthRepo(private val application: Application) {
 
     var userLogMutableLiveData: MutableLiveData<Boolean?> = MutableLiveData()
         get() {
-            // Özel işlemler yapılabilir
             return userLogMutableLiveData
         }
 
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-// setter getter yok
+
     init {
         val currentUser = auth.currentUser
         if (currentUser != null) {
