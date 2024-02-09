@@ -7,51 +7,44 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class AuthRepo(private val application: Application) {
-    var firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?> = MutableLiveData()
-        get() {
-            return firebaseUserMutableLiveData
-        }
-
-    var userLogMutableLiveData: MutableLiveData<Boolean?> = MutableLiveData()
-        get() {
-            return userLogMutableLiveData
-        }
-
-    var auth: FirebaseAuth = FirebaseAuth.getInstance()
-
+    val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?>
+    val userLoggedMutableLiveData: MutableLiveData<Boolean>
+    private val auth: FirebaseAuth
 
     init {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            firebaseUserMutableLiveData.postValue(currentUser)
+        firebaseUserMutableLiveData = MutableLiveData()
+        userLoggedMutableLiveData = MutableLiveData()
+        auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) {
+            firebaseUserMutableLiveData.postValue(auth.currentUser)
         }
     }
 
-    fun register(email: String, pass : String){
-        auth.createUserWithEmailAndPassword(email, pass)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    firebaseUserMutableLiveData.postValue(auth.currentUser)
-                } else {
-                    val exception = task.exception
-                    Toast.makeText(application, exception?.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
-
-    fun login(email: String, pass: String){
-        auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
-            if(task.isSuccessful){
+    fun register(email: String?, pass: String?) {
+        auth.createUserWithEmailAndPassword(email!!, pass!!).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 firebaseUserMutableLiveData.postValue(auth.currentUser)
             } else {
-                val exception = task.exception
-                Toast.makeText(application, exception?.message, Toast.LENGTH_SHORT).show()
+                val errorMessage = task.exception?.message
+                Toast.makeText(application, errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }
-    fun signout(){
-        auth.signOut()
-        userLogMutableLiveData.postValue(true)
+
+    fun login(email: String?, pass: String?) {
+        auth.signInWithEmailAndPassword(email!!, pass!!).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                firebaseUserMutableLiveData.postValue(auth.currentUser)
+            } else {
+                val errorMessage = task.exception?.message
+                Toast.makeText(application, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
+
+    fun signOut() {
+        auth.signOut()
+        userLoggedMutableLiveData.postValue(true)
+    }
 }

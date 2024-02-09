@@ -1,60 +1,74 @@
 package com.example.detapp.view
 
+import android.annotation.SuppressLint
+import android.os.Binder
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
 import com.example.detapp.R
+import com.example.detapp.databinding.FragmentLoginFragmentBinding
+import com.example.detapp.databinding.FragmentSignupFragmentBinding
+import com.google.firebase.auth.FirebaseUser
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [signup_fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class signup_fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+
+    private var _binding: FragmentSignupFragmentBinding? = null
+    private val binding get() = _binding!!
+    private var navController: NavController? = null
+    var aViewModel : AuthViewModel? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+        aViewModel  = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
+            .getInstance(activity?.application!!)).get(AuthViewModel::class.java)
 
+        aViewModel?.userData?.observe(this, Observer<FirebaseUser?> { firebaseUser ->
+            firebaseUser?.let {
+                navController?.navigate(R.id.action_login_fragment_to_signup_fragment)
+            }
+        })
+
+
+
+    }
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup_fragment, container, false)
+        _binding = FragmentSignupFragmentBinding.inflate(inflater, container,false)
+        binding.apply {
+            kaydol.setOnClickListener {
+                var email = mailEditText.text.toString()
+                var pass = sifreEditText.text.toString()
+                if (!email.isEmpty() && !pass.isEmpty())
+                {
+                    aViewModel?.register(email, pass)
+                }
+                else{
+                    mailEditText.setError("herhangi bir mail girmediniz")
+                    sifreEditText.setError("herhangi bir lifre girmesiniz")
+                }
+
+            }
+        }
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment signup_fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            signup_fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
