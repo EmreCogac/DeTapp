@@ -19,35 +19,41 @@ class user_fragment : Fragment() {
     private var _binding:   FragmentUserFragmentBinding? = null
     private val binding get() = _binding !!
     var aViewModel : AuthViewModel? = null
+    var usermail: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         aViewModel  = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
             .getInstance(activity?.application!!)).get(AuthViewModel::class.java)
 
         aViewModel?.userData?.observe(this, Observer<FirebaseUser?> { firebaseUser ->
-            if (firebaseUser == null){
 
-            }
         })
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUserFragmentBinding.inflate(inflater, container, false)
-
         binding.apply {
+            aViewModel?.userData?.observe(viewLifecycleOwner, Observer<FirebaseUser?> { firebaseUser ->
+                firebaseUser?.let {
+                    usermail = firebaseUser.email.toString()
+                    hesap.text = usermail
+                    geridon.visibility = View.GONE
+                    cikis.visibility =View.VISIBLE
+                }
+
+
+            })
+
+            geridon.setOnClickListener {
+                findNavController().navigate(R.id.action_user_fragment_to_login_fragment)
+            }
             cikis.setOnClickListener {
                 aViewModel?.signOut()
                 findNavController().navigate(R.id.action_user_fragment_to_login_fragment)
             }
         }
-
         return binding.root
-
     }
-
-
 }

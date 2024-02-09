@@ -6,15 +6,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.user_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-   <Button
-       android:id="@+id/cikis"
+   <TextView
+       android:id="@+id/hesap"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
+       android:text="Hesap bulunamadı"
+       android:layout_marginBottom="30dp"
+       app:layout_constraintBottom_toTopOf="@id/geridon"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"
+       />
+    <Button
+        android:id="@+id/geridon"
+        android:text="giriş ekranına dön"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="visible"
+        />
+    <Button
+        android:id="@+id/cikis"
+        android:text="Çıkış Yap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
        />
 
 

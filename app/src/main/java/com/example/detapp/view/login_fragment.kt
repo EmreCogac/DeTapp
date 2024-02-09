@@ -22,10 +22,10 @@ import com.google.firebase.auth.FirebaseUser
 
 
 class login_fragment : Fragment() {
+
     private var _binding: FragmentLoginFragmentBinding? = null
     private val binding get() = _binding!!
     var aViewModel : AuthViewModel? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +39,12 @@ class login_fragment : Fragment() {
         })
 
     }
+
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginFragmentBinding.inflate(inflater,container, false)
 
         binding.apply {

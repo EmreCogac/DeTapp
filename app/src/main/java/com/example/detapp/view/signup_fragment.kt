@@ -26,11 +26,9 @@ import com.google.firebase.auth.FirebaseUser
 
 class signup_fragment : Fragment() {
 
-
     private var _binding: FragmentSignupFragmentBinding? = null
     private val binding get() = _binding!!
     var aViewModel : AuthViewModel? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +40,6 @@ class signup_fragment : Fragment() {
                 findNavController().navigate(R.id.action_signup_fragment_to_login_fragment)
             }
         })
-
-
-
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -52,7 +47,7 @@ class signup_fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
-    ): View? {
+    ): View {
         _binding = FragmentSignupFragmentBinding.inflate(inflater, container,false)
         binding.apply {
 

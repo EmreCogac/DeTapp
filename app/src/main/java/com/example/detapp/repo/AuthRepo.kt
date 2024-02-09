@@ -7,14 +7,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class AuthRepo(private val application: Application) {
-    val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?>
-    val userLoggedMutableLiveData: MutableLiveData<Boolean>
-    private val auth: FirebaseAuth
+
+    val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?> = MutableLiveData()
+    val userLoggedMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     init {
-        firebaseUserMutableLiveData = MutableLiveData()
-        userLoggedMutableLiveData = MutableLiveData()
-        auth = FirebaseAuth.getInstance()
         if (auth.currentUser != null) {
             firebaseUserMutableLiveData.postValue(auth.currentUser)
         }
@@ -41,7 +39,6 @@ class AuthRepo(private val application: Application) {
             }
         }
     }
-
 
     fun signOut() {
         auth.signOut()
