@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
 import com.example.detapp.R
 import com.example.detapp.databinding.FragmentLoginFragmentBinding
@@ -23,7 +24,6 @@ import com.google.firebase.auth.FirebaseUser
 class login_fragment : Fragment() {
     private var _binding: FragmentLoginFragmentBinding? = null
     private val binding get() = _binding!!
-    private var navController: NavController? = null
     var aViewModel : AuthViewModel? = null
 
 
@@ -34,16 +34,11 @@ class login_fragment : Fragment() {
 
         aViewModel?.userData?.observe(this, Observer<FirebaseUser?> { firebaseUser ->
             firebaseUser?.let {
-                navController?.navigate(R.id.action_login_fragment_to_user_fragment)
-
+                findNavController().navigate(R.id.action_login_fragment_to_user_fragment)
             }
         })
 
-
-
     }
-
-
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,13 +48,22 @@ class login_fragment : Fragment() {
 
         binding.apply {
 
+            girisyapmadan.setOnClickListener {
+                findNavController().navigate(R.id.action_login_fragment_to_user_fragment)
+            }
+
             girisyap.setOnClickListener {
                 var email = mailEditText.text.toString()
                 var pass = passsEditText.text.toString()
+                if (!email.isEmpty() && !pass.isEmpty()){
                     aViewModel?.login(email, pass)
+                }else{
+                    mailEditText.setError("herhangi bir mail girmediniz")
+                    passsEditText.setError("herhangi bir lifre girmesiniz")
+                }
             }
             kaydol.setOnClickListener {
-                view?.findNavController()?.navigate(R.id.action_login_fragment_to_signup_fragment)
+                findNavController().navigate(R.id.action_login_fragment_to_signup_fragment)
                 Toast.makeText(context, "Giriş yap butonuna tıklandı", Toast.LENGTH_SHORT).show()
             }
         }

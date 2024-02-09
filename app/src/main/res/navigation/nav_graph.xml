@@ -32,5 +32,9 @@
         android:id="@+id/user_fragment"
         android:name="com.example.detapp.view.user_fragment"
         android:label="fragment_user_fragment"
-        tools:layout="@layout/fragment_user_fragment" />
+        tools:layout="@layout/fragment_user_fragment" >
+        <action
+            android:id="@+id/action_user_fragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
+    </fragment>
 </navigation>

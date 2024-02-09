@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
 import com.example.detapp.R
@@ -28,7 +29,6 @@ class signup_fragment : Fragment() {
 
     private var _binding: FragmentSignupFragmentBinding? = null
     private val binding get() = _binding!!
-    private var navController: NavController? = null
     var aViewModel : AuthViewModel? = null
 
 
@@ -39,13 +39,14 @@ class signup_fragment : Fragment() {
 
         aViewModel?.userData?.observe(this, Observer<FirebaseUser?> { firebaseUser ->
             firebaseUser?.let {
-                navController?.navigate(R.id.action_login_fragment_to_signup_fragment)
+                findNavController().navigate(R.id.action_signup_fragment_to_login_fragment)
             }
         })
 
 
 
     }
+
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +55,12 @@ class signup_fragment : Fragment() {
     ): View? {
         _binding = FragmentSignupFragmentBinding.inflate(inflater, container,false)
         binding.apply {
+
+            girisyapmadan.setOnClickListener{
+
+                findNavController().navigate(R.id.action_signup_fragment_to_user_fragment)
+            }
+
             kaydol.setOnClickListener {
                 var email = mailEditText.text.toString()
                 var pass = sifreEditText.text.toString()
