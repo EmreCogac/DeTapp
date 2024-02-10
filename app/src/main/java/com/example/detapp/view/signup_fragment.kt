@@ -1,27 +1,23 @@
 package com.example.detapp.view
 
 import android.annotation.SuppressLint
-import android.os.Binder
 import android.os.Bundle
-import android.renderscript.ScriptGroup.Binding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
+import com.example.detapp.viewmodel.AuthViewModel
 import com.example.detapp.R
-import com.example.detapp.databinding.FragmentLoginFragmentBinding
 import com.example.detapp.databinding.FragmentSignupFragmentBinding
+import com.example.detapp.model.ProfileDataModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.database
 
 
 class signup_fragment : Fragment() {
@@ -49,26 +45,39 @@ class signup_fragment : Fragment() {
 
     ): View {
         _binding = FragmentSignupFragmentBinding.inflate(inflater, container,false)
+
         binding.apply {
 
             girisyapmadan.setOnClickListener{
 
                 findNavController().navigate(R.id.action_signup_fragment_to_user_fragment)
             }
-
             kaydol.setOnClickListener {
                 var email = mailEditText.text.toString()
                 var pass = sifreEditText.text.toString()
-                if (!email.isEmpty() && !pass.isEmpty())
-                {
-                    aViewModel?.register(email, pass)
-                }
-                else{
-                    mailEditText.setError("herhangi bir mail girmediniz")
-                    sifreEditText.setError("herhangi bir lifre girmesiniz")
-                }
+                var name = adEditText.text.toString()
+                var soyad = soyadEditText.text.toString()
+                var username = usernameEditText.text.toString()
+
+
+                val db = Firebase.database
+                val myRef = db.getReference("deneme")
+                myRef.setValue("hey!")
+                Toast.makeText(context,"deneme,", Toast.LENGTH_SHORT).show()
+                //if (!email.isEmpty() && !pass.isEmpty()  && !name.isEmpty()  && !soyad.isEmpty()  && !username.isEmpty())
+                //{
+                //  var deneme = ProfileDataModel(name, soyad,username,email,pass)
+
+                //aViewModel?.register(deneme)
+                //}
+                //else{
+                //  mailEditText.setError("herhangi bir mail girmediniz")
+                //sifreEditText.setError("herhangi bir lifre girmesiniz")
+                //}
 
             }
+
+
         }
         return binding.root
     }

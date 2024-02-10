@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
+import com.example.detapp.viewmodel.AuthViewModel
 import com.example.detapp.R
 import com.example.detapp.databinding.FragmentUserFragmentBinding
 import com.google.firebase.auth.FirebaseUser

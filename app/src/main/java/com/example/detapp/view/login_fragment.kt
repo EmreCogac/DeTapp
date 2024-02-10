@@ -6,18 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.codingstuff.loginsignupmvvm.viewmodel.AuthViewModel
+import com.example.detapp.viewmodel.AuthViewModel
 import com.example.detapp.R
 import com.example.detapp.databinding.FragmentLoginFragmentBinding
-import com.example.detapp.databinding.FragmentSignupFragmentBinding
 import com.google.firebase.auth.FirebaseUser
 
 
