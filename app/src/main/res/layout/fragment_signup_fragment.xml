@@ -155,17 +155,36 @@
         app:layout_constraintTop_toBottomOf="@id/guide60percenthorizon"
         app:layout_constraintStart_toStartOf="parent"
         />
-
-    <Button
-        android:id="@+id/girisyapmadan"
-        android:text="Giriş yapmadan ilerle ->"
-        android:layout_width="150dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/guide90percenthorizon"
-        android:layout_marginRight="10dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <Button
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/loginedon"
+            android:text="Logine dön"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            />
+        <Button
+            android:id="@+id/girisyapmadan"
+            android:text="Giriş yapmadan ilerle"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

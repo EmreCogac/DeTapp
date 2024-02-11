@@ -28,16 +28,19 @@ class AuthRepo(private val application: Application) {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val userid = auth.currentUser!!.uid
-                    val refProfile = FirebaseDatabase.getInstance().getReference("users")
+                    val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
 
-                    refProfile.setValue("aaa")
+                    val userMap = HashMap<String, Any>()
+                    userMap["userId"] = userid
+                    userMap["username"] = profileDataModel.username
+                    userMap["name"] = profileDataModel.name
+                    userMap["surname"] = profileDataModel.surname
+                    userMap["email"] = profileDataModel.email
+
+                    refProfile.setValue(userMap)
                         .addOnCompleteListener { task ->
                             if (!task.isSuccessful) {
-                                Toast.makeText(
-                                    application,
-                                    task.exception?.message.toString(),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                Toast.makeText(application,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
                             }
                         }
                     firebaseUserMutableLiveData.postValue(auth.currentUser)
@@ -57,8 +60,8 @@ class AuthRepo(private val application: Application) {
                 Toast.makeText(application,"oldu", Toast.LENGTH_SHORT)
                     .show()
             }
-        Toast.makeText(application,"deneme",Toast.LENGTH_SHORT)
-            .show()
+
+
 
     }
 

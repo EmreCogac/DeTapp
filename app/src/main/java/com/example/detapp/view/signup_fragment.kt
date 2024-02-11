@@ -24,7 +24,7 @@ class signup_fragment : Fragment() {
 
     private var _binding: FragmentSignupFragmentBinding? = null
     private val binding get() = _binding!!
-    var aViewModel : AuthViewModel? = null
+    private var aViewModel : AuthViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +52,7 @@ class signup_fragment : Fragment() {
 
                 findNavController().navigate(R.id.action_signup_fragment_to_user_fragment)
             }
+
             kaydol.setOnClickListener {
                 var email = mailEditText.text.toString()
                 var pass = sifreEditText.text.toString()
@@ -59,25 +60,21 @@ class signup_fragment : Fragment() {
                 var soyad = soyadEditText.text.toString()
                 var username = usernameEditText.text.toString()
 
+                if (email.isNotEmpty() && pass.isNotEmpty() && name.isNotEmpty() && soyad.isNotEmpty() && username.isNotEmpty()) {
 
-                val db = Firebase.database
-                val myRef = db.getReference("deneme")
-                myRef.setValue("hey!")
-                Toast.makeText(context,"deneme,", Toast.LENGTH_SHORT).show()
-                //if (!email.isEmpty() && !pass.isEmpty()  && !name.isEmpty()  && !soyad.isEmpty()  && !username.isEmpty())
-                //{
-                //  var deneme = ProfileDataModel(name, soyad,username,email,pass)
+                    val deneme = ProfileDataModel(name,soyad,username,email,pass)
+                    aViewModel?.register(deneme)
 
-                //aViewModel?.register(deneme)
-                //}
-                //else{
-                //  mailEditText.setError("herhangi bir mail girmediniz")
-                //sifreEditText.setError("herhangi bir lifre girmesiniz")
-                //}
+                }
+                else
+                {
+                   Toast.makeText(context,"Boş kutuları doldurunuz!!", Toast.LENGTH_SHORT).show()
+                }
 
             }
-
-
+            loginedon.setOnClickListener {
+                findNavController().navigate(R.id.action_signup_fragment_to_login_fragment)
+            }
         }
         return binding.root
     }

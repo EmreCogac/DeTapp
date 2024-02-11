@@ -60,7 +60,6 @@ class login_fragment : Fragment() {
             }
             kaydol.setOnClickListener {
                 findNavController().navigate(R.id.action_login_fragment_to_signup_fragment)
-                Toast.makeText(context, "Giriş yap butonuna tıklandı", Toast.LENGTH_SHORT).show()
             }
         }
 
