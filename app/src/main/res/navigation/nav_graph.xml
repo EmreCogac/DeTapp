@@ -5,6 +5,10 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/login_fragment">
 
+
+
+
+
     <fragment
         android:id="@+id/login_fragment"
         android:name="com.example.detapp.view.login_fragment"
@@ -14,27 +18,85 @@
             android:id="@+id/action_login_fragment_to_signup_fragment"
             app:destination="@id/signup_fragment" />
         <action
-            android:id="@+id/action_login_fragment_to_user_fragment"
-            app:destination="@id/user_fragment" />
+            android:id="@+id/action_login_fragment_to_post_fragment"
+            app:destination="@id/navigation2" />
     </fragment>
     <fragment
         android:id="@+id/signup_fragment"
         android:name="com.example.detapp.view.signup_fragment"
         android:label="signup_fragment" >
         <action
-            android:id="@+id/action_signup_fragment_to_user_fragment"
-            app:destination="@id/user_fragment" />
-        <action
             android:id="@+id/action_signup_fragment_to_login_fragment"
             app:destination="@id/login_fragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/user_fragment"
-        android:name="com.example.detapp.view.user_fragment"
-        android:label="fragment_user_fragment"
-        tools:layout="@layout/fragment_user_fragment" >
         <action
-            android:id="@+id/action_user_fragment_to_login_fragment"
-            app:destination="@id/login_fragment" />
+            android:id="@+id/action_signup_fragment_to_post_fragment"
+            app:destination="@id/navigation2" />
     </fragment>
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/post_fragment">
+        <fragment
+            android:id="@+id/user_fragment"
+            android:name="com.example.detapp.view.user_fragment"
+            android:label="fragment_user_fragment"
+            tools:layout="@layout/fragment_post_fragment" >
+            <action
+                android:id="@+id/action_user_fragment_to_login_fragment"
+                app:destination="@id/nav_graph" />
+            <action
+                android:id="@+id/action_user_fragment_to_post_fragment"
+                app:destination="@id/post_fragment" />
+            <action
+                android:id="@+id/action_user_fragment_to_last_exchange_fragment2"
+                app:destination="@id/last_exchange_fragment2" />
+            <action
+                android:id="@+id/action_user_fragment_to_notification_fragment"
+                app:destination="@id/notification_fragment" />
+            <action
+                android:id="@+id/action_user_fragment_to_create_post_fragment3"
+                app:destination="@id/create_post_fragment3" />
+        </fragment>
+        <fragment
+            android:id="@+id/post_fragment"
+            android:name="com.example.detapp.view.Post_fragment"
+            android:label="fragment_post_fragment"
+            tools:layout="@layout/fragment_post_fragment" >
+            <action
+                android:id="@+id/action_post_fragment_to_user_fragment"
+                app:destination="@id/user_fragment" />
+            <action
+                android:id="@+id/action_post_fragment_to_create_post_fragment3"
+                app:destination="@id/create_post_fragment3" />
+        </fragment>
+        <fragment
+            android:id="@+id/create_post_fragment3"
+            android:name="com.example.detapp.view.Create_post_fragment"
+            android:label="fragment_create_post_fragment"
+            tools:layout="@layout/fragment_create_post_fragment" >
+            <action
+                android:id="@+id/action_create_post_fragment3_to_user_fragment"
+                app:destination="@id/user_fragment" />
+            <action
+                android:id="@+id/action_create_post_fragment3_to_post_fragment"
+                app:destination="@id/post_fragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/notification_fragment"
+            android:name="com.example.detapp.view.Notification_fragment"
+            android:label="fragment_notification_fragment"
+            tools:layout="@layout/fragment_notification_fragment" >
+            <action
+                android:id="@+id/action_notification_fragment_to_user_fragment"
+                app:destination="@id/user_fragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/last_exchange_fragment2"
+            android:name="com.example.detapp.view.Last_exchange_fragment"
+            android:label="fragment_last_exchange_fragment"
+            tools:layout="@layout/fragment_last_exchange_fragment" >
+            <action
+                android:id="@+id/action_last_exchange_fragment2_to_user_fragment"
+                app:destination="@id/user_fragment" />
+        </fragment>
+    </navigation>
+
 </navigation>

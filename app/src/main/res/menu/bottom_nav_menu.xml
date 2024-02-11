@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Kitaplar"
+        android:id="@+id/kitaps"
+        android:icon="@drawable/rounded_account_balance_24"
+        />
+
+    <item
+        android:title="Post Oluştur"
+        android:id="@+id/postolustur"
+        android:icon="@drawable/rounded_add_comment_24"
+        />
+
+    <item
+        android:title="Profil"
+        android:id="@+id/profil"
+        android:icon="@drawable/rounded_account_box_24"
+        />
+
+</menu>

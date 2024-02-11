@@ -6,6 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.user_fragment">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:orientation="horizontal"
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.90"
+        />
    <TextView
        android:id="@+id/hesap"
        android:layout_width="wrap_content"
@@ -33,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/bottom"
         android:visibility="gone"
        />
 

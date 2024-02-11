@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:orientation="horizontal"
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.90"
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -16,4 +23,16 @@
         app:navGraph="@navigation/nav_graph"
         />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottombar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottom"
+        app:menu="@menu/bottom_nav_menu"
+        android:background="@color/design_default_color_secondary_variant"
+        android:visibility="visible"
+        />
   </androidx.constraintlayout.widget.ConstraintLayout>

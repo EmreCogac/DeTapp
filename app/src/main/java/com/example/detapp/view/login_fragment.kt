@@ -29,7 +29,7 @@ class login_fragment : Fragment() {
 
         aViewModel?.userData?.observe(this, Observer<FirebaseUser?> { firebaseUser ->
             firebaseUser?.let {
-                findNavController().navigate(R.id.action_login_fragment_to_user_fragment)
+                findNavController().navigate(R.id.action_login_fragment_to_post_fragment)
             }
         })
 
@@ -45,7 +45,7 @@ class login_fragment : Fragment() {
         binding.apply {
 
             girisyapmadan.setOnClickListener {
-                findNavController().navigate(R.id.action_login_fragment_to_user_fragment)
+                findNavController().navigate(R.id.action_login_fragment_to_post_fragment)
             }
 
             girisyap.setOnClickListener {

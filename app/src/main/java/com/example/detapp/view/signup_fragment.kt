@@ -50,7 +50,7 @@ class signup_fragment : Fragment() {
 
             girisyapmadan.setOnClickListener{
 
-                findNavController().navigate(R.id.action_signup_fragment_to_user_fragment)
+                findNavController().navigate(R.id.action_signup_fragment_to_post_fragment)
             }
 
             kaydol.setOnClickListener {
