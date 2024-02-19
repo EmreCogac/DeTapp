@@ -11,6 +11,8 @@ import com.example.detapp.R
 class Create_post_fragment : Fragment() {
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

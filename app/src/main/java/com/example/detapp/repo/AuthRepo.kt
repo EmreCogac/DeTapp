@@ -27,26 +27,23 @@ class AuthRepo(private val application: Application) {
         auth.createUserWithEmailAndPassword(profileDataModel.email, profileDataModel.pass)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val userid = auth.currentUser!!.uid
-                    val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
+                            val userid = auth.currentUser!!.uid
+                            val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
 
-                    val userMap = HashMap<String, Any>()
-                    userMap["userId"] = userid
-                    userMap["username"] = profileDataModel.username
-                    userMap["name"] = profileDataModel.name
-                    userMap["surname"] = profileDataModel.surname
-                    userMap["email"] = profileDataModel.email
+                            val userMap = HashMap<String, Any>()
+                            userMap["userId"] = userid
+                            userMap["username"] = profileDataModel.username
+                            userMap["name"] = profileDataModel.name
+                            userMap["surname"] = profileDataModel.surname
+                            userMap["email"] = profileDataModel.email
 
-                    refProfile.setValue(userMap)
-                        .addOnCompleteListener { task ->
-                            if (!task.isSuccessful) {
-                                Toast.makeText(application,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
-                            }
-                        }
+                            refProfile.setValue(userMap)
+                                .addOnCompleteListener { task ->
+                                    if (!task.isSuccessful) {
+                                        Toast.makeText(application,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
+                                    }
+                                }
                     firebaseUserMutableLiveData.postValue(auth.currentUser)
-                } else {
-                    val errorMessage = task.exception?.message
-                    Toast.makeText(application, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -60,8 +57,6 @@ class AuthRepo(private val application: Application) {
                 Toast.makeText(application,"oldu", Toast.LENGTH_SHORT)
                     .show()
             }
-
-
 
     }
 

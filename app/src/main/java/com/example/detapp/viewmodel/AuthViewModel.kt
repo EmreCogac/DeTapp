@@ -25,9 +25,10 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         loggedStatus = repository.userLoggedMutableLiveData
     }
 
-    fun register(UserData: ProfileDataModel) {
-        repository.register(UserData, Application())
+    fun register(userData: ProfileDataModel) {
+        repository.register(userData, Application())
     }
+
 
     fun deneme(){
         repository.deneme()
