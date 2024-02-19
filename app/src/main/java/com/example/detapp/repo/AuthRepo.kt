@@ -15,8 +15,6 @@ class AuthRepo(private val application: Application) {
     val userLoggedMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    private lateinit var profileInfoList : MutableLiveData<List<ProfileDataModel>>
-
     init {
         if (auth.currentUser != null) {
             firebaseUserMutableLiveData.postValue(auth.currentUser)
@@ -50,8 +48,8 @@ class AuthRepo(private val application: Application) {
 
     fun deneme(){
         val database = FirebaseDatabase.getInstance().reference
-        val yeniVeri = "Yeni Veri"
-        val yeniVeriReferansi = database.child("veriler").push()
+        val yeniVeri = "Yeni Veri1"
+        val yeniVeriReferansi = database.child("verile1").push()
         yeniVeriReferansi.setValue(yeniVeri)
             .addOnCompleteListener {
                 Toast.makeText(application,"oldu", Toast.LENGTH_SHORT)

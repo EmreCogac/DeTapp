@@ -6,6 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.Create_post_fragment"
     >
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="658dp" />
+    <TextView
+        android:id="@+id/hesap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hesap bulunamadı profile gidin ve kayıt olun"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide40percenthorizon"
         android:layout_width="wrap_content"
@@ -20,18 +39,20 @@
         app:layout_constraintTop_toBottomOf="@id/guide40percenthorizon"
         app:layout_constraintStart_toStartOf="@id/kitapadoEditText"
         tools:ignore="MissingConstraints"
+        android:visibility="gone"
         />
 
     <EditText
         android:id="@+id/kitapadoEditText"
-
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
         app:layout_constraintTop_toBottomOf="@id/kitapadoText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:visibility="gone"
+        />
 
     <Button
         android:id="@+id/postKitap"
@@ -41,6 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kitapadoEditText"
         app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
         />
 
 

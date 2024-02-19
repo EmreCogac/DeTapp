@@ -4,8 +4,9 @@ import java.io.Serializable
 import java.sql.Time
 
 
-abstract class PostDataModel(
+data class PostDataModel(
     var bookname: String,
-    var preuser: String? = null,
-    var time: String
+    var time: String,
+    var usermail: String
+
 ) : Serializable

@@ -62,7 +62,7 @@ class signup_fragment : Fragment() {
 
                 if (email.isNotEmpty() && pass.isNotEmpty() && name.isNotEmpty() && soyad.isNotEmpty() && username.isNotEmpty()) {
 
-                    val deneme = ProfileDataModel(name,soyad,username,email,pass)
+                    val deneme =  ProfileDataModel(name,soyad,username,email,pass)
                     aViewModel?.register(deneme)
 
                 }
