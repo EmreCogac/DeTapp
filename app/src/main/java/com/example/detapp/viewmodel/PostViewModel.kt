@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CreatePostRepo
-    var userData: MutableLiveData<FirebaseUser?>
+    private var userData: MutableLiveData<FirebaseUser?>
     private val loggedStatus: MutableLiveData<Boolean>
 
     init {
@@ -27,5 +27,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun deneme(){
         repository.deneme()
     }
+
 }
 
