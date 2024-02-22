@@ -13,16 +13,50 @@
         android:layout_height="wrap_content"
         app:layout_constraintGuide_percent="0.90"
         />
-   <TextView
-       android:id="@+id/hesap"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Hesap bulunamadı"
-       android:layout_marginBottom="30dp"
-       app:layout_constraintBottom_toTopOf="@id/geridon"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/geridon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/hesap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Yükleniyor..."
+            />
+        <TextView
+            android:id="@+id/ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Yükleniyor..."
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/soyad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Yükleniyor..."
+            android:visibility="gone"
+
+            />
+        <TextView
+            android:id="@+id/mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="Yükleniyor..."
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/geridon"
         android:text="giriş ekranına dön"

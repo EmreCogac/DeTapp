@@ -4,8 +4,10 @@ import android.app.Application
 import android.provider.ContactsContract.Profile
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.ProfileDataModel
+import com.example.detapp.model.ProfileInfoDataModel
 import com.example.detapp.repo.AuthRepo
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -30,8 +32,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun deneme(){
-        repository.deneme()
+    fun deneme() : LiveData<ProfileInfoDataModel> {
+       return repository.deneme()
     }
     fun login(email: String?, pass: String?) {
         repository.login(email, pass)

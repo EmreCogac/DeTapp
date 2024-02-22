@@ -9,4 +9,6 @@ data class ProfileDataModel(
     var username: String,
     var email: String,
     var pass:String,
-) : Serializable
+) : Serializable {
+
+}

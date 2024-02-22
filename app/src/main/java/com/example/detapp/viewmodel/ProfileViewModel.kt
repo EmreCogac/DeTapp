@@ -20,8 +20,8 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         loggedStatus = repository.userLoggedMutableLiveData
     }
 
-    fun profileInfo(model: ProfileDataModel){
-        repository.profileInfo(model)
+    fun pInfo() : ProfileDataModel{
+        return repository.profileInfo()!!
     }
 
 }
