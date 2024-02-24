@@ -10,12 +10,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.tasks.await
 
 class AuthRepo(private val application: Application) {
 
     val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?> = MutableLiveData()
     val userLoggedMutableLiveData: MutableLiveData<Boolean> = MutableLiveData()
-    private val profileData : MutableLiveData<ProfileDataModel> = MutableLiveData()
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     init {
@@ -30,7 +34,6 @@ class AuthRepo(private val application: Application) {
                 if (task.isSuccessful) {
                             val userid = auth.currentUser!!.uid
                             val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
-
                             val userMap = HashMap<String, Any>()
                             userMap["userId"] = userid
                             userMap["username"] = profileDataModel.username
@@ -49,25 +52,24 @@ class AuthRepo(private val application: Application) {
             }
     }
 
-    fun deneme(): LiveData<ProfileInfoDataModel> {
-        val profileLiveData = MutableLiveData<ProfileInfoDataModel>()
+    suspend fun getProfileInfo(): Flow<ProfileInfoDataModel> = flow {
         val postRef = FirebaseDatabase.getInstance().getReference("users")
-
-        postRef.child(auth.currentUser!!.uid).get().addOnSuccessListener { dataSnapshot ->
-            val email = dataSnapshot.child("email").value.toString()
+        try {
+            val dataSnapshot = postRef.child(auth.currentUser!!.uid).get().await() // await hele bi dur diyor bu yüzden asennkron
             val name = dataSnapshot.child("name").value.toString()
+            val email = dataSnapshot.child("email").value.toString()
             val surname = dataSnapshot.child("surname").value.toString()
             val username = dataSnapshot.child("username").value.toString()
-
             val profileDataModel = ProfileInfoDataModel(name, surname, username, email)
-            profileLiveData.value = profileDataModel
-        }.addOnFailureListener {
-
-            Toast.makeText(application, "sorun var ", Toast.LENGTH_SHORT).show()
+            emit(profileDataModel)
+        } catch (e: Exception) {
+           return@flow
         }
+    }.flowOn(Dispatchers.Default)
 
-        return profileLiveData
-    }
+
+
+
     fun login(email: String?, pass: String?) {
         auth.signInWithEmailAndPassword(email!!, pass!!).addOnCompleteListener { task ->
             if (task.isSuccessful) {

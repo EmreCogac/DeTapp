@@ -14,6 +14,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import java.util.concurrent.Executor
+import java.util.concurrent.Flow
 
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
@@ -32,9 +37,13 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun deneme() : LiveData<ProfileInfoDataModel> {
-       return repository.deneme()
-    }
+    fun flowDeneme() : kotlinx.coroutines.flow.Flow<kotlinx.coroutines.flow.Flow<ProfileInfoDataModel>> = flow {
+       try {
+           emit(repository.getProfileInfo())
+       }catch (e:Exception){
+           return@flow
+       }
+    }.flowOn(Dispatchers.Default)
     fun login(email: String?, pass: String?) {
         repository.login(email, pass)
     }

@@ -2,20 +2,24 @@ package com.example.detapp.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.detapp.viewmodel.AuthViewModel
 import com.example.detapp.R
 import com.example.detapp.databinding.FragmentUserFragmentBinding
-import com.example.detapp.model.ProfileDataModel
-
+import com.example.detapp.viewmodel.AuthViewModel
 import com.example.detapp.viewmodel.ProfileViewModel
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 
 
 class user_fragment : Fragment() {
@@ -28,10 +32,10 @@ class user_fragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         aViewModel  = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-            .getInstance(activity?.application!!)).get(AuthViewModel::class.java)
+            .getInstance(activity?.application!!))[AuthViewModel::class.java]
 
         profileViewModel  = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
-            .getInstance(activity?.application!!)).get(ProfileViewModel::class.java)
+            .getInstance(activity?.application!!))[ProfileViewModel::class.java]
 
     }
     @SuppressLint("SetTextI18n")
@@ -51,19 +55,38 @@ class user_fragment : Fragment() {
                     mail.visibility = View.VISIBLE
 
                     usermail = firebaseUser.email.toString()
-                    val profileLiveData = aViewModel?.deneme()
+                    val profileLiveData = profileViewModel?.deneme()
+                    val profileInfoData = profileViewModel?.profileDeneme()
 
-                    profileLiveData?.observe(viewLifecycleOwner, Observer { profileDataModel ->
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                            profileInfoData?.collect { data ->
+
+                                hesap.text = data.username
+                                ad.text = data.name
+                                soyad.text = data.surname
+                                mail.text = data.email
+
+
+                            }
+                        }
+
+                    }
+
+
+                   /* profileLiveData?.observe(viewLifecycleOwner, Observer { profileDataModel ->
 
                         val name = profileDataModel.name
                         val surname = profileDataModel.surname
                         val username = profileDataModel.username
                         val email = profileDataModel.mail
-                        hesap.text = "kullanıcı adı: $username"
-                        ad.text = "Adı: $name"
-                        soyad.text = "Soyado: $surname"
-                        mail.text = "Maili: $email"
-                    })
+                       if (name.isNotEmpty() && surname.isNotEmpty() && username.isNotEmpty() && email.isNotEmpty()){
+                           hesap.text = "kullanıcı adı: $username"
+                           ad.text = "Adı: $name"
+                           soyad.text = "Soyado: $surname"
+                           mail.text = "Maili: $email"
+                       }
+                    })*/
 
 
                 }
@@ -81,4 +104,6 @@ class user_fragment : Fragment() {
         }
         return binding.root
     }
+
+
 }
