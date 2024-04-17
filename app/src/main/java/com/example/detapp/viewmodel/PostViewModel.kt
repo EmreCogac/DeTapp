@@ -27,6 +27,11 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun deneme(){
         repository.deneme()
     }
-
+    fun firestore(){
+        repository.denemeFirestore()
+    }
+    fun createPostFirestore(postData: PostDataModel){
+        repository.createPostFirestore(postData)
+    }
 }
 

@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "57550013987",
-    "firebase_url": "https://degis-tokusapp-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "degis-tokusapp",
-    "storage_bucket": "degis-tokusapp.appspot.com"
+    "project_number": "575491709680",
+    "firebase_url": "https://degis-tbeta-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "degis-tbeta",
+    "storage_bucket": "degis-tbeta.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:57550013987:android:ba0271ccd3394ef96b5396",
+        "mobilesdk_app_id": "1:575491709680:android:c8e5a9487fdeac47e44035",
         "android_client_info": {
           "package_name": "com.example.detapp"
         }
@@ -16,26 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDgRR5VwYw6DEjKa8K0n51YknBXVENu0nE"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:57550013987:android:046ac3b68e0793146b5396",
-        "android_client_info": {
-          "package_name": "com.example.detappx"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDgRR5VwYw6DEjKa8K0n51YknBXVENu0nE"
+          "current_key": "AIzaSyA5E8U5F-vgtk3o8SXfjHNaE6g-6oBO92U"
         }
       ],
       "services": {

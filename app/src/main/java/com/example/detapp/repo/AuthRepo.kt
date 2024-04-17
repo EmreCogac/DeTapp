@@ -6,10 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.ProfileDataModel
 import com.example.detapp.model.ProfileInfoDataModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -28,29 +30,54 @@ class AuthRepo(private val application: Application) {
         }
     }
 
-    fun register(profileDataModel: ProfileDataModel, application: Application) {
+    fun register(profileDataModel: ProfileDataModel, application: Application){
+        val db = Firebase.firestore
         auth.createUserWithEmailAndPassword(profileDataModel.email, profileDataModel.pass)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                            val userid = auth.currentUser!!.uid
-                            val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
-                            val userMap = HashMap<String, Any>()
-                            userMap["userId"] = userid
-                            userMap["username"] = profileDataModel.username
-                            userMap["name"] = profileDataModel.name
-                            userMap["surname"] = profileDataModel.surname
-                            userMap["email"] = profileDataModel.email
+                if ( task.isSuccessful) {
+                    val userid = auth.currentUser!!.uid
+                    val userMap = HashMap<String, Any>()
+                    userMap["userId"] = userid
+                    userMap["username"] = profileDataModel.username
+                    userMap["name"] = profileDataModel.name
+                    userMap["surname"] = profileDataModel.surname
+                    userMap["email"] = profileDataModel.email
 
-                            refProfile.setValue(userMap)
-                                .addOnCompleteListener { task ->
-                                    if (!task.isSuccessful) {
-                                        Toast.makeText(application,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
-                                    }
-                                }
+                    db.collection("Users").add(userMap)
+                        .addOnCompleteListener { task ->
+                            if (!task.isSuccessful){
+                                Toast.makeText(application,task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     firebaseUserMutableLiveData.postValue(auth.currentUser)
                 }
+
             }
     }
+    // register realtime database
+//    fun register(profileDataModel: ProfileDataModel, application: Application) {
+//        auth.createUserWithEmailAndPassword(profileDataModel.email, profileDataModel.pass)
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                            val userid = auth.currentUser!!.uid
+//                            val refProfile = FirebaseDatabase.getInstance().getReference("users").child(userid)
+//                            val userMap = HashMap<String, Any>()
+//                            userMap["userId"] = userid
+//                            userMap["username"] = profileDataModel.username
+//                            userMap["name"] = profileDataModel.name
+//                            userMap["surname"] = profileDataModel.surname
+//                            userMap["email"] = profileDataModel.email
+//
+//                            refProfile.setValue(userMap)
+//                                .addOnCompleteListener { task ->
+//                                    if (!task.isSuccessful) {
+//                                        Toast.makeText(application,task.exception?.message.toString(),Toast.LENGTH_SHORT).show()
+//                                    }
+//                                }
+//                    firebaseUserMutableLiveData.postValue(auth.currentUser)
+//                }
+//            }
+//    }
 
     suspend fun getProfileInfo(): Flow<ProfileInfoDataModel> = flow {
         val postRef = FirebaseDatabase.getInstance().getReference("users")

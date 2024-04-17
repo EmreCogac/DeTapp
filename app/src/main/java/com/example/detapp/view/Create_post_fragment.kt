@@ -56,6 +56,7 @@ class Create_post_fragment : Fragment() {
                     kitapadoEditText.visibility = View.VISIBLE
                     postKitap.visibility = View.VISIBLE
                     hesap.visibility = View.GONE
+                    postdeneme.visibility = View.VISIBLE
 
                     val current = LocalDate.now().toString()
                     postKitap.setOnClickListener {
@@ -63,13 +64,15 @@ class Create_post_fragment : Fragment() {
                         val kitapadi = kitapadoEditText.text.toString()
                         if(kitapadi.isNotEmpty()){
                             val model = PostDataModel(kitapadi,current, firebaseUser!!.email.toString())
-                            postViewModel?.createpost(model)
+                            postViewModel?.createPostFirestore(model)
                         }
                     }
 
                 }
             })
-
+            postdeneme.setOnClickListener{
+                postViewModel?.firestore()
+            }
 
         }
 
