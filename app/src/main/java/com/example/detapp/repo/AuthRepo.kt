@@ -2,14 +2,12 @@ package com.example.detapp.repo
 
 import android.app.Application
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.ProfileDataModel
 import com.example.detapp.model.ProfileInfoDataModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers

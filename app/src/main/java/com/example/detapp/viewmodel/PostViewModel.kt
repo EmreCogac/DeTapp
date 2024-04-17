@@ -20,10 +20,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         loggedStatus = repository.userLoggedMutableLiveData
     }
 
-    fun createpost(postData: PostDataModel){
-        Toast.makeText(getApplication(),"deneme",Toast.LENGTH_SHORT).show()
-        repository.createPost(postData)
-    }
+//    fun createpost(postData: PostDataModel){
+//        Toast.makeText(getApplication(),"deneme",Toast.LENGTH_SHORT).show()
+//        repository.createPost(postData)
+//    }
     fun deneme(){
         repository.deneme()
     }

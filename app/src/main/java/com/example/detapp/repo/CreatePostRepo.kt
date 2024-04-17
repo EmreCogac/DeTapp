@@ -3,18 +3,16 @@ package com.example.detapp.repo
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues.TAG
-import android.nfc.Tag
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.PostDataModel
-import com.example.detapp.viewmodel.PostViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.firestore
-import kotlin.concurrent.timerTask
+
 
 class CreatePostRepo(private val application: Application ){
     val firebaseUserMutableLiveData: MutableLiveData<FirebaseUser?> = MutableLiveData()
@@ -55,9 +53,7 @@ class CreatePostRepo(private val application: Application ){
             }
     }
 
-    fun createPost(postDataModel: PostDataModel){
-        val userid = auth
-    }
+
     // create post with realtime database
 //    fun createPost(postDataModel: PostDataModel){
 //
