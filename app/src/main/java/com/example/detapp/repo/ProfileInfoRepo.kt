@@ -1,11 +1,14 @@
 package com.example.detapp.repo
 
 import android.app.Application
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.ProfileDataModel
 import com.example.detapp.model.ProfileInfoDataModel
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -15,6 +18,11 @@ import com.google.firebase.database.MutableData
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.getValue
 import com.google.firebase.database.snapshots
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.snapshots
+import com.google.firebase.firestore.toObject
+import com.google.protobuf.ListValue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -45,6 +53,21 @@ class ProfileInfoRepo(private val application: Application) {
         return ref.child(auth.currentUser!!.uid).snapshots.mapNotNull {
             it.getValue<ProfileInfoDataModel>()
         }.flowOn(Dispatchers.IO)
+    }
+
+
+
+    fun profileInfo (): LiveData<ProfileInfoDataModel> {
+        val db = Firebase.firestore
+        val users = db.collection("Users").document(auth.currentUser!!.uid)
+        val profileLiveData = MutableLiveData<ProfileInfoDataModel>()
+        users.get()
+            .addOnSuccessListener {snapshot->
+                profileLiveData.value = snapshot.toObject<ProfileInfoDataModel>()
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception) }
+            return profileLiveData
     }
 
     fun deneme(): LiveData<ProfileInfoDataModel> {

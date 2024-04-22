@@ -36,7 +36,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun deneme() : LiveData<ProfileInfoDataModel> {
-        return repository.deneme()
+        return repository.profileInfo()
     }
 
     fun profileDeneme() : kotlinx.coroutines.flow.Flow<ProfileInfoDataModel> {

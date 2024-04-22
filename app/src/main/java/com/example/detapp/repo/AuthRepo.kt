@@ -41,7 +41,7 @@ class AuthRepo(private val application: Application) {
                     userMap["surname"] = profileDataModel.surname
                     userMap["email"] = profileDataModel.email
 
-                    db.collection("Users").add(userMap)
+                    db.collection("Users").document(auth.currentUser!!.uid).set(userMap)
                         .addOnCompleteListener { task ->
                             if (!task.isSuccessful){
                                 Toast.makeText(application,task.exception?.message.toString(), Toast.LENGTH_SHORT).show()

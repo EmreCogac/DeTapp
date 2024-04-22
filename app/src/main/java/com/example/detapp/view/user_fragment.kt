@@ -56,37 +56,37 @@ class user_fragment : Fragment() {
 
                     usermail = firebaseUser.email.toString()
                     val profileLiveData = profileViewModel?.deneme()
-                    val profileInfoData = profileViewModel?.profileDeneme()
+//                    val profileInfoData = profileViewModel?.profileDeneme()
+//
+//                    viewLifecycleOwner.lifecycleScope.launch {
+//                        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                            profileInfoData?.collect { data ->
+//
+//                                hesap.text = data.username
+//                                ad.text = data.name
+//                                soyad.text = data.surname
+//                                mail.text = data.email
+//
+//
+//                            }
+//                        }
+//
+//                    }
 
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                            profileInfoData?.collect { data ->
 
-                                hesap.text = data.username
-                                ad.text = data.name
-                                soyad.text = data.surname
-                                mail.text = data.email
-
-
-                            }
-                        }
-
-                    }
-
-
-                   /* profileLiveData?.observe(viewLifecycleOwner, Observer { profileDataModel ->
+                   profileLiveData?.observe(viewLifecycleOwner, Observer { profileDataModel ->
 
                         val name = profileDataModel.name
                         val surname = profileDataModel.surname
                         val username = profileDataModel.username
-                        val email = profileDataModel.mail
+                        val email = profileDataModel.email
                        if (name.isNotEmpty() && surname.isNotEmpty() && username.isNotEmpty() && email.isNotEmpty()){
                            hesap.text = "kullanıcı adı: $username"
                            ad.text = "Adı: $name"
                            soyad.text = "Soyado: $surname"
                            mail.text = "Maili: $email"
                        }
-                    })*/
+                    })
 
 
                 }
