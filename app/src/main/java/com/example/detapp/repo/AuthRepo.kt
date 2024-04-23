@@ -52,7 +52,7 @@ class AuthRepo(private val application: Application) {
 
             }
     }
-    // register realtime database
+// register realtime database
 //    fun register(profileDataModel: ProfileDataModel, application: Application) {
 //        auth.createUserWithEmailAndPassword(profileDataModel.email, profileDataModel.pass)
 //            .addOnCompleteListener { task ->
