@@ -47,11 +47,6 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun postList(adapter: PostAdapter, postReadModel: ArrayList<PostReadModel>){
         repository.postList(adapter,postReadModel)
     }
-    private val cafeBoxItemList: List<PostReadModel> = listOf(
-        PostReadModel("denemee","deneme","deneme","deneme"),
-        PostReadModel("denemee","deneme","deneme","deneme"),
-        PostReadModel("denemee","deneme","deneme","deneme"),
-    )
 
 
 

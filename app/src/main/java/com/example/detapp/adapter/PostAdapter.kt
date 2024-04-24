@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +14,26 @@ import com.example.detapp.model.PostReadModel
 
 class PostAdapter(
     private val postReadModel: List<PostReadModel>,
+    private val itemClickListener: (PostReadModel) -> Unit //
 ): RecyclerView.Adapter<PostAdapter.PostChildHolder>(){
 
     interface ItemClickListener{
-
+        fun onButtonClick(position: PostReadModel )
     }
     inner class PostChildHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
         val bookname: TextView = itemView.findViewById(R.id.kitapadiList)
         val user: TextView = itemView.findViewById(R.id.KitapSahipList)
-
+        val btn : Button = itemView.findViewById(R.id.deneme)
 
         init {
+
+            btn.setOnClickListener {
+                val buttonPosition = absoluteAdapterPosition
+                if (buttonPosition != RecyclerView.NO_POSITION) {
+                    val clickedItem = postReadModel[buttonPosition]
+                    itemClickListener(clickedItem)
+                }
+            }
 
         }
     }
@@ -38,6 +48,7 @@ class PostAdapter(
 
             holder.bookname.text = box.bookname
             holder.user.text = box.usermail
+            holder.btn.text = box.uid
 
 
         }

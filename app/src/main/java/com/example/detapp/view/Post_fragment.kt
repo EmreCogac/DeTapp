@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintLayoutStates
 import androidx.lifecycle.Observer
@@ -25,15 +26,16 @@ import com.google.firebase.firestore.firestore
 import java.time.LocalDate
 
 
-class Post_fragment : Fragment() {
+ class Post_fragment : Fragment() , PostAdapter.ItemClickListener {
 
     private var _binding : FragmentPostFragmentBinding? = null
     private val binding get() = _binding !!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var postViewModel: PostViewModel
     private var authViewModel: AuthViewModel? =null
-    private lateinit var adapter: PostAdapter
 
+     override fun onButtonClick(position: PostReadModel) {
+         Toast.makeText(requireContext(), position.bookname, Toast.LENGTH_SHORT).show()
+     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,20 +52,15 @@ class Post_fragment : Fragment() {
 
         _binding = FragmentPostFragmentBinding.inflate(inflater, container, false)
 
-
-
-
-
             val recyclerView: RecyclerView = binding.recyclerPost
              recyclerView.layoutManager = LinearLayoutManager(requireContext())
             postViewModel.postReadModelList.observe(viewLifecycleOwner, Observer { postList ->
-                recyclerView.adapter = PostAdapter(postList)
+
+                recyclerView.adapter = PostAdapter(postList){
+                   position -> onButtonClick(position)
+
+                }
             })
-
-
-
-
-
 
         return binding.root
     }

@@ -120,7 +120,9 @@ class CreatePostRepo(private val application: Application ){
                 for (document in querySnapshot.documents) {
                     val bookname = document.getString("bookname") ?: ""
                     val usermail = document.getString("usermail") ?: ""
-                    val postReadModel = PostReadModel(bookname, "null", "null", usermail)
+                    val uid = document.getString("uid") ?: ""
+                    val time = document.getString("time") ?: ""
+                    val postReadModel = PostReadModel(bookname, time, uid, usermail)
                     postReadModelList.add(postReadModel)
                 }
                 callback(postReadModelList)
