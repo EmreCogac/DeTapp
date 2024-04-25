@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.10" />
+        app:layout_constraintGuide_percent="0.20" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -29,15 +29,22 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.90" />
 
+
+
     <TextView
-        android:layout_marginTop="30dp"
         android:id="@+id/ad"
-        android:text="ad"
+        android:text="KAYIT OL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/guide10percenthorizon"
-        app:layout_constraintStart_toStartOf="@id/adEditText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guide10percenthorizon"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
+        android:textSize="30dp"
+        android:textColor="#0F2C59"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
         />
 
     <EditText
@@ -45,106 +52,136 @@
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/ad"
+        app:layout_constraintTop_toTopOf="@id/guide10percenthorizon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/soyad"
-        android:text="Soyad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/adEditText"
-        app:layout_constraintStart_toStartOf="@id/adEditText"
+
         tools:ignore="MissingConstraints"
-        />
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:hint="ad"
+        android:background="@drawable/backround"
+        android:inputType="text" />
+<!--    <TextView-->
+<!--        android:id="@+id/soyad"-->
+<!--        android:text="Soyad"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/adEditText"-->
+<!--        app:layout_constraintStart_toStartOf="@id/adEditText"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/soyadEditText"
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/soyad"
+        app:layout_constraintTop_toBottomOf="@id/adEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/username"
-        android:text="Kullanıcı Adı"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/soyadEditText"
-        app:layout_constraintStart_toStartOf="@id/soyadEditText"
         tools:ignore="MissingConstraints"
-        />
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:hint="Soyad"
+        android:background="@drawable/backround"
+        android:inputType="text"
+        android:layout_marginTop="30dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/username"-->
+<!--        android:text="Kullanıcı Adı"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/soyadEditText"-->
+<!--        app:layout_constraintStart_toStartOf="@id/soyadEditText"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/usernameEditText"
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/soyadEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/mail"
-        android:text="Mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/usernameEditText"
-        app:layout_constraintStart_toStartOf="@id/usernameEditText"
         tools:ignore="MissingConstraints"
-        />
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:hint="Kullanıcı adı"
+        android:background="@drawable/backround"
+        android:inputType="text"
+        android:layout_marginTop="30dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/mail"-->
+<!--        android:text="Mail"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/usernameEditText"-->
+<!--        app:layout_constraintStart_toStartOf="@id/usernameEditText"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/mailEditText"
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/mail"
+        app:layout_constraintTop_toBottomOf="@id/usernameEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/sifre"
-        android:text="sifre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mailEditText"
-        app:layout_constraintStart_toStartOf="@id/mailEditText"
         tools:ignore="MissingConstraints"
-        />
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:hint="Email"
+        android:background="@drawable/backround"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="30dp"/>
+
+<!--    <TextView-->
+<!--        android:id="@+id/sifre"-->
+<!--        android:text="sifre"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/mailEditText"-->
+<!--        app:layout_constraintStart_toStartOf="@id/mailEditText"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        />-->
 
     <EditText
         android:id="@+id/sifreEditText"
         android:gravity="start"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/sifre"
+        app:layout_constraintTop_toBottomOf="@id/mailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/sifretekrar"
-        android:text="sifre tekrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sifreEditText"
-        app:layout_constraintStart_toStartOf="@id/sifreEditText"
         tools:ignore="MissingConstraints"
-        />
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:hint="Şifre"
+        android:background="@drawable/backround"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="30dp"/>
+<!--    <TextView-->
+<!--        android:id="@+id/sifretekrar"-->
+<!--        android:text="sifre tekrar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/sifreEditText"-->
+<!--        app:layout_constraintStart_toStartOf="@id/sifreEditText"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        />-->
 
-    <EditText
-        android:id="@+id/sifreTekrarEditText"
-        android:gravity="start"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toBottomOf="@id/sifretekrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+<!--    <EditText-->
+<!--        android:id="@+id/sifreTekrarEditText"-->
+<!--        android:gravity="start"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/sifretekrar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
     <Button
         android:id="@+id/kaydol"
@@ -154,6 +191,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guide60percenthorizon"
         app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#0F2C59"
         />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -170,6 +208,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
+            android:backgroundTint="#0F2C59"
             />
         <Button
             android:id="@+id/girisyapmadan"
@@ -180,7 +219,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-
+            android:backgroundTint="#0F2C59"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.example.detapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -39,17 +38,17 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.profil -> {
                     changeFragment(R.id.user_fragment)
-                    Toast.makeText(this, "Profile basıldı", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Profile basıldı", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.postolustur -> {
                     changeFragment(R.id.create_post_fragment3)
-                    Toast.makeText(this, "post olustur basıldı", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "post olustur basıldı", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.kitaps -> {
                     changeFragment(R.id.post_fragment)
-                    Toast.makeText(this, "postlara basıldı", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "postlara basıldı", Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false

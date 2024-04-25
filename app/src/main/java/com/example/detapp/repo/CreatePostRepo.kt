@@ -147,7 +147,7 @@ class CreatePostRepo(private val application: Application ){
                     if (!task.isSuccessful) {
                         Toast.makeText(application,task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(application,"sorun mu var", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(application,"sorun mu var", Toast.LENGTH_SHORT).show()
                     }
 
                 }

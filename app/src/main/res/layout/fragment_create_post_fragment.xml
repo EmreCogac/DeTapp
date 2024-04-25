@@ -23,6 +23,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#0F2C59"
+        android:textStyle="bold"
         />
 
     <androidx.constraintlayout.widget.Guideline
@@ -37,9 +39,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/guide40percenthorizon"
-        app:layout_constraintStart_toStartOf="@id/kitapadoEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints"
+        android:textColor="#0F2C59"
+        android:textStyle="bold"
         android:visibility="gone"
+        android:layout_margin="20dp"
+
         />
 
     <EditText
@@ -52,6 +59,11 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         android:visibility="gone"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/backround"
+        android:layout_margin="20dp"
+        android:hint="Kitap adı giriniz"
         />
 
     <Button
@@ -63,17 +75,19 @@
         app:layout_constraintTop_toBottomOf="@id/kitapadoEditText"
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="gone"
+        android:backgroundTint="#0F2C59"
+        android:layout_margin="20dp"
         />
-    <Button
-        android:id="@+id/postdeneme"
-        android:text="Kitap deneme"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/postKitap"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/postdeneme"-->
+<!--        android:text="Kitap deneme"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/postKitap"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:visibility="gone"-->
+<!--        />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

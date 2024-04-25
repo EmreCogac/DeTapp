@@ -27,6 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="Yükleniyor..."
+            tools:ignore="MissingConstraints"
+            android:textColor="#0F2C59"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+
             />
         <TextView
             android:id="@+id/ad"
@@ -35,6 +40,10 @@
             android:layout_marginBottom="32dp"
             android:text="Yükleniyor..."
             android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            android:textColor="#0F2C59"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
             />
         <TextView
             android:id="@+id/soyad"
@@ -43,6 +52,10 @@
             android:layout_marginBottom="32dp"
             android:text="Yükleniyor..."
             android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            android:textColor="#0F2C59"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
 
             />
         <TextView
@@ -52,6 +65,10 @@
             android:layout_marginBottom="32dp"
             android:text="Yükleniyor..."
             android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            android:textColor="#0F2C59"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
             />
 
     </LinearLayout>
@@ -67,6 +84,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="visible"
+        android:backgroundTint="#0F2C59"
+        android:layout_margin="20dp"
         />
     <Button
         android:id="@+id/cikis"
@@ -76,6 +95,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/bottom"
         android:visibility="gone"
+        android:backgroundTint="#0F2C59"
+        android:layout_margin="20dp"
        />
 
 

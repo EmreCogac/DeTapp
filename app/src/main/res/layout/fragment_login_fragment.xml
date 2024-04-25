@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide90percenthorizon"
@@ -36,16 +36,21 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.90" />
 
-<!--    <TextView-->
-<!--        android:paddingStart="15dp"-->
-<!--        android:id="@+id/mail"-->
-<!--        android:text="E-mail"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/guide25percenthorizon"-->
-<!--        app:layout_constraintStart_toStartOf="@id/mailEditText"-->
-<!--        tools:ignore="MissingConstraints"-->
-<!--        />-->
+    <TextView
+        android:id="@+id/mail"
+        android:text="GİRİŞ YAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guide25percenthorizon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        android:textSize="30dp"
+        android:textColor="#0F2C59"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-light"
+        />
 
     <EditText
         android:id="@+id/mailEditText"
@@ -60,6 +65,7 @@
         android:paddingTop="10dp"
         android:hint="Email"
         android:background="@drawable/backround"
+        android:inputType="textEmailAddress"
         />
 <!--    <TextView-->
 <!--        android:id="@+id/sifre"-->
@@ -84,6 +90,7 @@
         android:hint="Password"
         android:paddingTop="10dp"
         android:paddingStart="20dp"
+        android:inputType="textPassword"
         />
 
     <Button
