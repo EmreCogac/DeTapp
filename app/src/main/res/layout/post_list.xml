@@ -52,8 +52,6 @@
                 android:id="@+id/deneme"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:backgroundTint="#0F2C59"
-                android:src="@drawable/baseline_mail_outline_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guide90percenthorizon"

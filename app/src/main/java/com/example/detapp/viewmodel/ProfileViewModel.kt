@@ -29,19 +29,24 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     private val repository: ProfileInfoRepo
     private var userData: MutableLiveData<FirebaseUser?>
     private val loggedStatus: MutableLiveData<Boolean>
-
+    private val _postReadModelList = MutableLiveData<List<PostReadModel>>()
+    val postReadModelList: LiveData<List<PostReadModel>> = _postReadModelList
 
     init {
         repository = ProfileInfoRepo(application)
         userData = repository.firebaseUserMutableLiveData
         loggedStatus = repository.userLoggedMutableLiveData
-
+        getProfilePostData()
     }
 
     fun deneme() : LiveData<ProfileInfoDataModel> {
         return repository.profileInfo()
     }
-
+    private fun getProfilePostData() {
+        repository.getProfilePostData{ postList ->
+            _postReadModelList.value = postList
+        }
+    }
     fun profileDeneme() : kotlinx.coroutines.flow.Flow<ProfileInfoDataModel> {
 
         return repository.profileDeneme()

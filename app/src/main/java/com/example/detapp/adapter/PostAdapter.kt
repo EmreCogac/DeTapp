@@ -1,6 +1,8 @@
 package com.example.detapp.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +19,9 @@ import com.example.detapp.model.PostReadModel
 class PostAdapter(
     private var originalPostReadModel: List<PostReadModel>,
     private var postReadModel: List<PostReadModel>,
+    private val State : String,
     private val itemClickListener: (PostReadModel) -> Unit //
+
 ): RecyclerView.Adapter<PostAdapter.PostChildHolder>(){
 
     interface ItemClickListener{
@@ -66,6 +70,16 @@ class PostAdapter(
 
             holder.bookname.text = box.bookname
             holder.user.text = box.usermail
+            when(State){
+                "profile" -> {
+                    holder.btn.setBackgroundColor(Color.parseColor("#FFA50B0B"))
+                    holder.btn.setImageResource(R.drawable.baseline_delete_outline_24)
+                }
+                "post" -> {
+                    holder.btn.setBackgroundColor(Color.parseColor("#0F2C59"))
+                    holder.btn.setImageResource(R.drawable.baseline_mail_outline_24)
+                }
+            }
 
 
         }

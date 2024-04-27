@@ -35,18 +35,18 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
 //        Toast.makeText(getApplication(),"deneme",Toast.LENGTH_SHORT).show()
 //        repository.createPost(postData)
 //    }
-    fun deneme(){
-        repository.deneme()
-    }
-    fun firestore(){
-        repository.denemeFirestore()
-    }
+//    fun deneme(){
+//        repository.deneme()
+//    }
+//    fun firestore(){
+//        repository.denemeFirestore()
+//    }
     fun createPostFirestore(postData: PostDataModel){
         repository.createPostFirestore(postData)
     }
-    fun postList(adapter: PostAdapter, postReadModel: ArrayList<PostReadModel>){
-        repository.postList(adapter,postReadModel)
-    }
+//    fun postList(adapter: PostAdapter, postReadModel: ArrayList<PostReadModel>){
+//        repository.postList(adapter,postReadModel)
+//    }
 
 
 

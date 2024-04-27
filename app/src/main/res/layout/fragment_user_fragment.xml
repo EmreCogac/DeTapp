@@ -15,12 +15,16 @@
         />
 
     <LinearLayout
+        android:id="@+id/hesap_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/geridon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        >
+
         <TextView
             android:id="@+id/hesap"
             android:layout_width="wrap_content"
@@ -31,7 +35,6 @@
             android:textColor="#0F2C59"
             android:textStyle="bold"
             android:layout_margin="20dp"
-
             />
         <TextView
             android:id="@+id/ad"
@@ -73,7 +76,20 @@
 
     </LinearLayout>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_profile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
+        android:fadingEdgeLength="0dp"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cikis"
+        app:layout_constraintTop_toBottomOf="@id/hesap_linear_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        />
     <Button
         android:id="@+id/geridon"
         android:text="giriş ekranına dön"
@@ -98,6 +114,18 @@
         android:backgroundTint="#0F2C59"
         android:layout_margin="20dp"
        />
+    <ImageButton
+        android:id="@+id/notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_notifications_none_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        android:backgroundTint="#0F2C59"
+        android:layout_margin="20dp"
+        />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
