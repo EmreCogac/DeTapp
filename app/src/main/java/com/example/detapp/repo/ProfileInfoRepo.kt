@@ -1,5 +1,4 @@
 package com.example.detapp.repo
-
 import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -10,7 +9,6 @@ import com.example.detapp.model.ProfileInfoDataModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 
@@ -27,8 +25,8 @@ class ProfileInfoRepo(private val application: Application) {
         }
     }
 
-
-    private val ref = FirebaseDatabase.getInstance().getReference("users")
+//
+//    private val ref = FirebaseDatabase.getInstance().getReference("users")
 
 
 //    fun profileDeneme () : Flow<ProfileInfoDataModel>{
