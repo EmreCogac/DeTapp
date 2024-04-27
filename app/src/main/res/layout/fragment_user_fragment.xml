@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Yükleniyor..."
+            android:text="@string/yukleniyor"
             tools:ignore="MissingConstraints"
             android:textColor="#0F2C59"
             android:textStyle="bold"
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Yükleniyor..."
+            android:text="@string/yukleniyor"
             android:visibility="gone"
             tools:ignore="MissingConstraints"
             android:textColor="#0F2C59"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
-            android:text="Yükleniyor..."
+            android:text="@string/yukleniyor"
             android:visibility="gone"
             tools:ignore="MissingConstraints"
             android:textColor="#0F2C59"
@@ -92,7 +92,7 @@
         />
     <Button
         android:id="@+id/geridon"
-        android:text="giriş ekranına dön"
+        android:text="@string/giris_ekranina_don"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
         />
     <Button
         android:id="@+id/cikis"
-        android:text="Çıkış Yap"
+        android:text="@string/cikis_yap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +124,7 @@
         android:visibility="visible"
         android:backgroundTint="#0F2C59"
         android:layout_margin="20dp"
-        />
+        android:contentDescription="@string/bildirim" />
 
 
 

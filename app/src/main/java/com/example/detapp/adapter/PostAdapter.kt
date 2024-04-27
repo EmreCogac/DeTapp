@@ -1,19 +1,13 @@
 package com.example.detapp.adapter
-
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.detapp.R
-import com.example.detapp.model.PostDataModel
 import com.example.detapp.model.PostReadModel
 
 class PostAdapter(
@@ -27,6 +21,7 @@ class PostAdapter(
     interface ItemClickListener{
         fun onButtonClick(position: PostReadModel )
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun filter(text: String) {
         postReadModel = if (text.isEmpty()) {
             originalPostReadModel
@@ -36,11 +31,12 @@ class PostAdapter(
         notifyDataSetChanged()
     }
 
-    fun setData(data: List<PostReadModel>) {
-        originalPostReadModel = data
-        postReadModel = data
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun setData(data: List<PostReadModel>) {
+//        originalPostReadModel = data
+//        postReadModel = data
+//        notifyDataSetChanged()
+//    }
 
     inner class PostChildHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
         val bookname: TextView = itemView.findViewById(R.id.kitapadiList)
