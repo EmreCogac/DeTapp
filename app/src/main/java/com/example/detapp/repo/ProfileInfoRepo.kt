@@ -36,12 +36,12 @@ class ProfileInfoRepo(private val application: Application) {
     private val ref = FirebaseDatabase.getInstance().getReference("users")
 
 
-    fun profileDeneme () : Flow<ProfileInfoDataModel>{
-        Thread.sleep(1_000)
-        return ref.child(auth.currentUser!!.uid).snapshots.mapNotNull {
-            it.getValue<ProfileInfoDataModel>()
-        }.flowOn(Dispatchers.IO)
-    }
+//    fun profileDeneme () : Flow<ProfileInfoDataModel>{
+//        Thread.sleep(1_000)
+//        return ref.child(auth.currentUser!!.uid).snapshots.mapNotNull {
+//            it.getValue<ProfileInfoDataModel>()
+//        }.flowOn(Dispatchers.IO)
+//    }
     fun getProfilePostData(callback: (List<PostReadModel>) -> Unit) {
         val db = Firebase.firestore
         db.collection("Post").orderBy("bookname")
