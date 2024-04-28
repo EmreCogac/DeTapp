@@ -1,10 +1,12 @@
 package com.example.detapp.view
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.detapp.R
-import com.example.detapp.adapter.PostAdapter
+import com.example.detapp.adapter.ProfileAdapter
 import com.example.detapp.databinding.FragmentUserFragmentBinding
 import com.example.detapp.model.PostReadModel
 import com.example.detapp.viewmodel.AuthViewModel
@@ -27,11 +29,8 @@ class user_fragment : Fragment() {
     private var aViewModel : AuthViewModel? = null
     private var usermail: String? = null
     private var profileViewModel: ProfileViewModel? = null
-    private lateinit var adapter: PostAdapter
-    fun onButtonClick(position: PostReadModel) {
-//   Toast.makeText(context, position.postid, pos)
-     profileViewModel?.deletePost(position.postid)
-    }
+    private lateinit var adapter: ProfileAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         aViewModel  = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory
@@ -98,7 +97,7 @@ class user_fragment : Fragment() {
 
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 profileViewModel?.postReadModelList?.observe(viewLifecycleOwner, Observer { postList ->
-                    adapter = PostAdapter(postList,postList,"profile", requireContext()) { position -> onButtonClick(position) }
+                    adapter = ProfileAdapter(postList) { position, absulatePosition, postReadModelList -> onButtonClick(position,absulatePosition,postReadModelList) }
                     recyclerView.adapter = adapter
                 })
 
@@ -127,6 +126,25 @@ class user_fragment : Fragment() {
         _binding = null
     }
 
-
+    fun onButtonClick(
+        position: PostReadModel,
+        absulatePosition: Int,
+        postReadModelList: MutableList<PostReadModel>
+    ) {
+        val builder : AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder
+            .setTitle("Simek istediğine emin misin ?")
+            .setPositiveButton("Evet") { dialog, which ->
+                postReadModelList.removeAt(absulatePosition)
+                adapter.notifyItemRemoved(absulatePosition)
+                profileViewModel?.deletePost(position.postid)
+            }
+            .setNegativeButton("Hayır") { dialog, which ->
+                Toast.makeText(requireContext(),"Silinemedi", Toast.LENGTH_SHORT).show()
+            }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+        profileViewModel?.deletePost(position.postid)
+    }
 
 }

@@ -49,7 +49,7 @@ class ProfileInfoRepo(private val application: Application) {
                             val time = document.getString("time") ?: ""
                             val postid = document.getString("postid") ?:""
                             val postReadModel = PostReadModel(bookname, time, uid, usermail, postid)
-//                            Toast.makeText(application, bookname, Toast.LENGTH_SHORT  ).show()
+                            Toast.makeText(application, bookname, Toast.LENGTH_SHORT  ).show()
                             postReadModelList.add(0,postReadModel)
                         }
                 }

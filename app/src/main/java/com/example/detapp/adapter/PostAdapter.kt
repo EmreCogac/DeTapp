@@ -22,7 +22,6 @@ class PostAdapter(
     private val itemClickListener: (PostReadModel) -> Unit //
 
 ): RecyclerView.Adapter<PostAdapter.PostChildHolder>(){
-    private lateinit var  profileViewModel: ProfileViewModel
     interface ItemClickListener{
         fun onButtonClick(position: PostReadModel )
     }
