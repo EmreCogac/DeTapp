@@ -7,4 +7,5 @@ data class PostReadModel(
     var time : String =  "",
     var uid :String =" ",
     var usermail: String = " ",
+    var postid: String = " ",
 ) : Serializable

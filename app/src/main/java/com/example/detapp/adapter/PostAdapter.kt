@@ -1,5 +1,7 @@
 package com.example.detapp.adapter
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +11,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.detapp.R
 import com.example.detapp.model.PostReadModel
+import com.example.detapp.viewmodel.ProfileViewModel
+import kotlin.coroutines.coroutineContext
 
 class PostAdapter(
     private var originalPostReadModel: List<PostReadModel>,
     private var postReadModel: List<PostReadModel>,
-    private val State : String,
+    private val State: String,
+    private val application: Context,
     private val itemClickListener: (PostReadModel) -> Unit //
 
 ): RecyclerView.Adapter<PostAdapter.PostChildHolder>(){
-
+    private lateinit var  profileViewModel: ProfileViewModel
     interface ItemClickListener{
         fun onButtonClick(position: PostReadModel )
     }
@@ -44,12 +49,28 @@ class PostAdapter(
         val btn : ImageButton = itemView.findViewById(R.id.deneme)
 
         init {
-
             btn.setOnClickListener {
                 val buttonPosition = absoluteAdapterPosition
                 if (buttonPosition != RecyclerView.NO_POSITION) {
-                    val clickedItem = postReadModel[buttonPosition]
+                    val clickedItem = originalPostReadModel[buttonPosition]
                     itemClickListener(clickedItem)
+                    when(State){
+                        "profile" -> {
+                            val builder : AlertDialog.Builder = AlertDialog.Builder(application)
+                            builder
+                                .setTitle("Simek istediğine emin misin ?")
+                                .setPositiveButton("Evet") { dialog, which ->
+                                    originalPostReadModel = originalPostReadModel.toMutableList().apply { removeAt(buttonPosition) }
+                                    postReadModel = postReadModel.toMutableList().apply { removeAt(buttonPosition) }
+                                    notifyItemRemoved(buttonPosition)
+                                }
+                                .setNegativeButton("Hayır") { dialog, which ->
+                                    // Do something else.
+                                }
+                            val dialog: AlertDialog = builder.create()
+                            dialog.show()
+                        }
+                    }
                 }
             }
 

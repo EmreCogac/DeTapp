@@ -2,6 +2,7 @@ package com.example.detapp.repo
 import android.app.Application
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.detapp.model.PostReadModel
@@ -37,7 +38,7 @@ class ProfileInfoRepo(private val application: Application) {
 //    }
     fun getProfilePostData(callback: (List<PostReadModel>) -> Unit) {
         val db = Firebase.firestore
-        db.collection("Post").orderBy("bookname")
+        db.collection("Post").orderBy("time")
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -46,8 +47,10 @@ class ProfileInfoRepo(private val application: Application) {
                             val usermail = document.getString("usermail") ?: ""
                             val uid = document.getString("uid") ?: ""
                             val time = document.getString("time") ?: ""
-                            val postReadModel = PostReadModel(bookname, time, uid, usermail)
-                            postReadModelList.add(postReadModel)
+                            val postid = document.getString("postid") ?:""
+                            val postReadModel = PostReadModel(bookname, time, uid, usermail, postid)
+//                            Toast.makeText(application, bookname, Toast.LENGTH_SHORT  ).show()
+                            postReadModelList.add(0,postReadModel)
                         }
                 }
                 callback(postReadModelList)
@@ -69,6 +72,13 @@ class ProfileInfoRepo(private val application: Application) {
             .addOnFailureListener { exception ->
                 Log.d(TAG, "get failed with ", exception) }
             return profileLiveData
+    }
+    fun deletePost(postId : String){
+        val db = Firebase.firestore
+        db.collection("Post").document(postId)
+            .delete()
+            .addOnSuccessListener { Toast.makeText(application,"Başarıyla silindi", Toast.LENGTH_SHORT).show() }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
     }
 
 //    fun deneme(): LiveData<ProfileInfoDataModel> {

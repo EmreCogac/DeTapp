@@ -26,6 +26,9 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     fun deneme() : LiveData<ProfileInfoDataModel> {
         return repository.profileInfo()
     }
+    fun deletePost(postid : String){
+        repository.deletePost(postid)
+    }
     private fun getProfilePostData() {
         repository.getProfilePostData{ postList ->
             _postReadModelList.value = postList

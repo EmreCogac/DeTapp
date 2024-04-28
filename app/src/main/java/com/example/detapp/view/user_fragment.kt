@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,7 +29,8 @@ class user_fragment : Fragment() {
     private var profileViewModel: ProfileViewModel? = null
     private lateinit var adapter: PostAdapter
     fun onButtonClick(position: PostReadModel) {
-        Toast.makeText(requireContext(), position.bookname, Toast.LENGTH_SHORT).show()
+//   Toast.makeText(context, position.postid, pos)
+     profileViewModel?.deletePost(position.postid)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,9 +98,8 @@ class user_fragment : Fragment() {
 
                 recyclerView.layoutManager = LinearLayoutManager(requireContext())
                 profileViewModel?.postReadModelList?.observe(viewLifecycleOwner, Observer { postList ->
-                    adapter = PostAdapter(postList,postList,"profile") { position -> onButtonClick(position) }
+                    adapter = PostAdapter(postList,postList,"profile", requireContext()) { position -> onButtonClick(position) }
                     recyclerView.adapter = adapter
-
                 })
 
                 notification.setOnClickListener{

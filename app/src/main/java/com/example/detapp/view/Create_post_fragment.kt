@@ -60,6 +60,7 @@ class Create_post_fragment : Fragment() {
                             val model = PostDataModel(kitapadi,current, firebaseUser!!.email.toString())
                             postViewModel?.createPostFirestore(model)
                         }
+                        kitapadoEditText.text.clear()
                     }
 
                 }

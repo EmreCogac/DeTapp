@@ -114,7 +114,7 @@ class CreatePostRepo(private val application: Application ){
     }
     fun getPostData(callback: (List<PostReadModel>) -> Unit) {
         val db = Firebase.firestore
-        db.collection("Post").orderBy("bookname")
+      db.collection("Post").orderBy("time")
             .get()
             .addOnSuccessListener { querySnapshot ->
                 for (document in querySnapshot.documents) {
@@ -123,7 +123,7 @@ class CreatePostRepo(private val application: Application ){
                     val uid = document.getString("uid") ?: ""
                     val time = document.getString("time") ?: ""
                     val postReadModel = PostReadModel(bookname, time, uid, usermail)
-                    postReadModelList.add(postReadModel)
+                    postReadModelList.add(0,postReadModel)
                 }
                 callback(postReadModelList)
             }
@@ -142,12 +142,15 @@ class CreatePostRepo(private val application: Application ){
             postMap["bookname"] = postDataModel.bookname
             postMap["time"] = postDataModel.time
             postMap["uid"] = auth.currentUser!!.uid
-                db.collection("Post").add(postMap)
+            postMap["postid"] = postDataModel.usermail+auth.currentUser!!.uid+postDataModel.time+postDataModel.bookname
+            val postId = postDataModel.usermail+auth.currentUser!!.uid+postDataModel.time+postDataModel.bookname
+            db.collection("Post").document(postId.replace(" ", "_")).set(postMap)
                 .addOnCompleteListener {task->
                     if (!task.isSuccessful) {
                         Toast.makeText(application,task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
                     }else{
-//                        Toast.makeText(application,"sorun mu var", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(application,"Başarıyla oluşturuldu", Toast.LENGTH_LONG).show()
+                        
                     }
 
                 }

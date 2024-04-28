@@ -82,8 +82,9 @@ class Post_fragment : Fragment() , PostAdapter.ItemClickListener {
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
             postViewModel.postReadModelList.observe(viewLifecycleOwner, Observer { postList ->
 
-                adapter = PostAdapter(postList,postList,"post") { position -> onButtonClick(position) }
+                adapter = PostAdapter(postList,postList,"post",requireContext()) { position -> onButtonClick(position) }
                 recyclerView.adapter = adapter
+
 
             })
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
