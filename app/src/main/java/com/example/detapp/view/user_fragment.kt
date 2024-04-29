@@ -144,7 +144,9 @@ class user_fragment : Fragment() {
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
-        profileViewModel?.deletePost(position.postid)
+
     }
+
+  
 
 }
