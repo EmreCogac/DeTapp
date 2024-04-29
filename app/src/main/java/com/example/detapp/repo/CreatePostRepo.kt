@@ -2,25 +2,16 @@ package com.example.detapp.repo
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.detapp.adapter.PostAdapter
 import com.example.detapp.model.PostDataModel
 import com.example.detapp.model.PostReadModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.DocumentChange
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.toObject
+
 
 
 class CreatePostRepo(private val application: Application ){
@@ -45,23 +36,23 @@ class CreatePostRepo(private val application: Application ){
             }
     }
 
-    fun denemeFirestore(){
-        val db = Firebase.firestore
-        val user = hashMapOf(
-            "first" to "Ada",
-            "last" to "Lovelace",
-            "born" to 1815,
-        )
-
-        db.collection("users")
-            .add(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-    }
+//    fun denemeFirestore(){
+//        val db = Firebase.firestore
+//        val user = hashMapOf(
+//            "first" to "Ada",
+//            "last" to "Lovelace",
+//            "born" to 1815,
+//        )
+//
+//        db.collection("users")
+//            .add(user)
+//            .addOnSuccessListener { documentReference ->
+//                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+//            }
+//            .addOnFailureListener { e ->
+//                Log.w(TAG, "Error adding document", e)
+//            }
+//    }
 
 
     // create post with realtime database
@@ -91,27 +82,27 @@ class CreatePostRepo(private val application: Application ){
 //    }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun postList(adapter: PostAdapter, postReadModel: ArrayList<PostReadModel>){
-        val db = Firebase.firestore
-        var data = postReadModel
-        data = arrayListOf()
-        db.collection("Post").
-            addSnapshotListener { value, error ->
-                if (error != null) {
-                    Log.e("some error", error.message.toString())
-                }
 
-                if (value != null) {
-                    for (dc: DocumentChange in value.documentChanges) {
-                        if (dc.type == DocumentChange.Type.ADDED) {
-                            data.add(dc.document.toObject(PostReadModel::class.java))
-                        }
-                    }
-                    adapter.notifyDataSetChanged()
-                }
-            }
-    }
+//    fun postList(adapter: PostAdapter, postReadModel: ArrayList<PostReadModel>){
+//        val db = Firebase.firestore
+//        var data = postReadModel
+//        data = arrayListOf()
+//        db.collection("Post").
+//            addSnapshotListener { value, error ->
+//                if (error != null) {
+//                    Log.e("some error", error.message.toString())
+//                }
+//
+//                if (value != null) {
+//                    for (dc: DocumentChange in value.documentChanges) {
+//                        if (dc.type == DocumentChange.Type.ADDED) {
+//                            data.add(dc.document.toObject(PostReadModel::class.java))
+//                        }
+//                    }
+//                    adapter.notifyDataSetChanged()
+//                }
+//            }
+//    }
     fun getPostData(callback: (List<PostReadModel>) -> Unit) {
         val db = Firebase.firestore
       db.collection("Post").orderBy("time")
