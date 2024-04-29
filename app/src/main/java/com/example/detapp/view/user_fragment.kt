@@ -147,6 +147,6 @@ class user_fragment : Fragment() {
 
     }
 
-  
+
 
 }
