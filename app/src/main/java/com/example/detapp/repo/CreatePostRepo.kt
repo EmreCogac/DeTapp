@@ -137,14 +137,15 @@ class CreatePostRepo(private val application: Application ){
     fun createPostFirestore(postDataModel: PostDataModel){
         val db = Firebase.firestore
         if (auth.currentUser != null) {
+            val postId = postDataModel.usermail+auth.currentUser!!.uid+postDataModel.time+postDataModel.bookname
+            val postIdReplaced = postId.replace(" ", "_")
             val postMap = HashMap<String, Any>()
             postMap["usermail"] = postDataModel.usermail
             postMap["bookname"] = postDataModel.bookname
             postMap["time"] = postDataModel.time
             postMap["uid"] = auth.currentUser!!.uid
-            postMap["postid"] = postDataModel.usermail+auth.currentUser!!.uid+postDataModel.time+postDataModel.bookname
-            val postId = postDataModel.usermail+auth.currentUser!!.uid+postDataModel.time+postDataModel.bookname
-            db.collection("Post").document(postId.replace(" ", "_")).set(postMap)
+            postMap["postid"] = postIdReplaced
+            db.collection("Post").document(postIdReplaced).set(postMap)
                 .addOnCompleteListener {task->
                     if (!task.isSuccessful) {
                         Toast.makeText(application,task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
